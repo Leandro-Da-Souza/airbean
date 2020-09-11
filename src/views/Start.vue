@@ -14,7 +14,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.$router.push("/home");
+      this.$router.push("/about");
     }, 3000);
   },
 };
