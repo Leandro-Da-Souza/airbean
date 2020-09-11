@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <Navigation v-if="$route.meta.requireNav" />
         <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
                 <component :is="Component"></component>
@@ -9,8 +10,11 @@
 </template>
 
 <script>
+import Navigation from './components/Navigation';
 export default {
-    components: {},
+    components: {
+        Navigation,
+    },
 };
 </script>
 
