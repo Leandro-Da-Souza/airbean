@@ -2,12 +2,15 @@
     <div>
         <nav>
             <button class="closeBtn" @click="toggleMenu">
-                <img src="../assets/graphics/navicon.svg" alt="" />
+                <img :src="navIcon" alt="" />
             </button>
-            <div class="open" v-if="toggle">
+            <div class="open" :class="toggle ? 'closeMenu' : 'openMenu'">
                 <h2 @click="handleRoute">Meny</h2>
+                <hr />
                 <h2 @click="handleRoute">Vårt Kaffe</h2>
+                <hr />
                 <h2 @click="handleRoute">Orderstatus</h2>
+                <hr />
             </div>
         </nav>
     </div>
@@ -21,13 +24,17 @@ export default {
             toggle: false,
         };
     },
+    computed: {
+        navIcon() {
+            return console.log(this.document);
+        },
+    },
     methods: {
         toggleMenu() {
             this.toggle = !this.toggle;
         },
         handleRoute(e) {
             let route = e.path[0].innerText;
-            console.log(e.path[0].innerText);
             if (route === 'Meny') {
                 this.$router.push('/home');
             } else if (route === 'Vårt Kaffe') {
@@ -45,11 +52,29 @@ export default {
     height: 100vh;
     position: absolute;
     background-color: #333;
-    transition: width 2s;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.openMenu {
+    animation: slideOpen 0.7s ease;
+    animation-fill-mode: forwards;
+}
+
+.closeMenu {
+    animation: slideShut 0.7s ease;
+    animation-fill-mode: forwards;
+}
+
+.open h2 {
+    color: #f5f5f5;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.open hr {
+    width: 30%;
 }
 
 .closeBtn {
@@ -66,5 +91,23 @@ export default {
 
 .closeBtn:hover {
     background-color: #fff;
+}
+
+@keyframes slideOpen {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes slideShut {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
 }
 </style>
