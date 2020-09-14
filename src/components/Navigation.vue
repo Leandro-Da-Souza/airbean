@@ -2,7 +2,7 @@
     <div>
         <nav>
             <button class="closeBtn" @click="toggleMenu">
-                <img :src="navIcon" alt="" />
+                <img src alt="" />
             </button>
             <div class="open" :class="toggle ? 'closeMenu' : 'openMenu'">
                 <h2 @click="handleRoute">Meny</h2>
@@ -24,11 +24,6 @@ export default {
             toggle: false,
         };
     },
-    computed: {
-        navIcon() {
-            return console.log(this.document);
-        },
-    },
     methods: {
         toggleMenu() {
             this.toggle = !this.toggle;
@@ -42,6 +37,21 @@ export default {
             }
             this.toggleMenu();
         },
+        navIcon() {
+            let img = this.$el.querySelector('.closeBtn img');
+
+            if (this.toggle) {
+                img.src = require('../assets/graphics/navicon.svg');
+            } else {
+                img.src = require('../assets/graphics/close.svg');
+            }
+        },
+    },
+    updated() {
+        this.navIcon();
+    },
+    mounted() {
+        this.navIcon();
     },
 };
 </script>
