@@ -3,10 +3,14 @@ import { createStore } from 'vuex';
 export default createStore({
     state: {
         menu: [],
+        cart: [],
     },
     mutations: {
         SET_MENU: (state, data) => {
             state.menu = data;
+        },
+        SET_CART: (state, data) => {
+            state.cart.push(data);
         },
     },
     actions: {
