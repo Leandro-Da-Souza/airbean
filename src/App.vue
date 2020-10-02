@@ -15,6 +15,10 @@ export default {
   components: {
     Navigation,
   },
+  created() {
+    console.log(this);
+    this.$store.dispatch("GET_MENU");
+  },
 };
 </script>
 

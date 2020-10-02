@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="this.showCart ? 'open' : 'shut'">
     <div class="imgWrapper" @click="this.showCart = !this.showCart">
       <img src="../assets/graphics/bag.svg" alt="" />
     </div>
@@ -26,6 +26,17 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 99;
+}
+
+.open {
+  animation: openFromTop 0.7s ease;
+  animation-fill-mode: forwards;
+}
+
+.shut {
+  animation: shutFromBottom 0.7s ease;
+  animation-fill-mode: forwards;
 }
 
 .imgWrapper {
@@ -51,5 +62,22 @@ export default {
   width: 100vw;
   height: 100vh;
   z-index: 999;
+}
+
+@keyframes openFromTop {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes shutFromBottom {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0%;
+  }
 }
 </style>
