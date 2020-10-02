@@ -7,18 +7,18 @@ const routes = [
         path: '/',
         name: 'Start',
         component: Start,
-        meta: { requireNav: false },
+        meta: { requireNav: false, requireCart: false },
     },
     {
         path: '/home',
         name: 'Home',
         component: Home,
-        meta: { requireNav: true },
+        meta: { requireNav: true, requireCart: true },
     },
     {
         path: '/about',
         name: 'About',
-        meta: { requireNav: true },
+        meta: { requireNav: true, requireCart: true },
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.

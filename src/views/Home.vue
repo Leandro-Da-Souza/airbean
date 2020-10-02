@@ -1,13 +1,15 @@
 <template>
-    <div class="home">
-        Hello
-    </div>
+  <Cart />
+  <div class="home">Hello</div>
 </template>
 
 <script>
+import Cart from "../components/Cart.vue";
 export default {
-    name: 'Home',
-    components: {},
+  name: "Home",
+  components: {
+    Cart,
+  },
 };
 </script>
 
