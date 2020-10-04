@@ -59,9 +59,21 @@ export default {
     toggleCart() {
       this.showCart = !this.showCart;
     },
-    ...mapMutations(["ADD_QUANTITY", "REMOVE_QUANTITY", "CLEAR_CART"]),
+    ...mapMutations([
+      "ADD_QUANTITY",
+      "REMOVE_QUANTITY",
+      "CLEAR_CART",
+      "SET_ORDER",
+    ]),
     checkOut() {
-      this.CLEAR_CART();
+      if (this.getCartLength > 0) {
+        this.CLEAR_CART();
+        this.SET_ORDER("order sent");
+        this.$router.push("/checkout");
+      } else {
+        alert("no orders yet");
+        return;
+      }
     },
   },
 };

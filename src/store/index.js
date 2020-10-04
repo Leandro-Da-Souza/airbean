@@ -4,6 +4,7 @@ export default createStore({
     state: {
         menu: [],
         cart: [],
+        order: {},
     },
     mutations: {
         SET_MENU: (state, data) => {
@@ -31,6 +32,9 @@ export default createStore({
         },
         CLEAR_CART: (state) => {
             state.cart = [];
+        },
+        SET_ORDER: (state, data) => {
+            state.order = data;
         },
     },
     actions: {
@@ -65,6 +69,9 @@ export default createStore({
                 total += item.price * item.quantity;
             });
             return total;
+        },
+        getOrder(state) {
+            return state.order;
         },
     },
 });

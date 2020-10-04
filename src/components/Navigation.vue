@@ -34,6 +34,8 @@ export default {
         this.$router.push("/home");
       } else if (route === "Vårt Kaffe") {
         this.$router.push("/about");
+      } else if (route === "Orderstatus") {
+        this.$router.push("/checkout");
       }
       this.toggleMenu();
     },
