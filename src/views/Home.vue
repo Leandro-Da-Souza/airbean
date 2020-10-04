@@ -1,24 +1,29 @@
 <template>
   <div class="home">
     <Cart />
+    <Header />
     <div class="menu">
+      <h2>Meny</h2>
       <ul>
         <li class="menuItem" v-for="menu in getMenu.menu" :key="menu.id">
           <div class="wrapper">
             <img src="../assets/graphics/add.svg" alt="" />
           </div>
           <div class="left">
-            <h3>{{ menu.title }}........</h3>
+            <h3>{{ menu.title }}..........</h3>
             <span>{{ menu.desc }}</span>
           </div>
           <h4>{{ menu.price }} kr</h4>
         </li>
       </ul>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Cart from "../components/Cart.vue";
 import { mapGetters, mapMutations } from "vuex";
 
@@ -26,6 +31,8 @@ export default {
   name: "Home",
   components: {
     Cart,
+    Header,
+    Footer,
   },
   data() {
     return {};
@@ -45,7 +52,8 @@ export default {
 
 <style scoped>
 .home {
-  z-index: 999;
+  width: 100vw;
+  height: 100vh;
 }
 .wrapper img {
   background: #333;
@@ -65,6 +73,11 @@ export default {
   text-align: left;
 }
 .menu {
-  margin-top: 50px;
+  margin-top: 10px;
+}
+
+.menu h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* margin-bottom: 20px; */
 }
 </style>

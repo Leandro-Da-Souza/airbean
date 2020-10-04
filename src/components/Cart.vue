@@ -21,12 +21,15 @@ export default {
 </script>
 
 <style scoped>
+@import "../assets/css/variables.css";
+
 .container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   z-index: 99;
+  color: var(--paragraph-color);
 }
 
 .open {
