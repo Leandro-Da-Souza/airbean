@@ -17,6 +17,21 @@ export default createStore({
                 quantity: 1,
             });
         },
+        ADD_QUANTITY: (state, item) => {
+            let index = state.cart.findIndex((i) => i.id === item.id);
+            state.cart[index].quantity++;
+        },
+        REMOVE_QUANTITY: (state, item) => {
+            let index = state.cart.findIndex((i) => i.id === item.id);
+            if (state.cart[index].quantity <= 1) {
+                state.cart.splice(index, 1);
+            } else {
+                state.cart[index].quantity--;
+            }
+        },
+        CLEAR_CART: (state) => {
+            state.cart = [];
+        },
     },
     actions: {
         async GET_MENU({ commit }) {
@@ -24,6 +39,13 @@ export default createStore({
             const data = await response.json();
             commit('SET_MENU', data);
             return true;
+        },
+        ADD_TO_CART_OR_QUANT({ state, commit }, data) {
+            if (state.cart.find((i) => i.id === data.id)) {
+                commit('ADD_QUANTITY', data);
+            } else {
+                commit('ADD_TO_CART', data);
+            }
         },
     },
     modules: {},
@@ -36,6 +58,13 @@ export default createStore({
         },
         getCart(state) {
             return state.cart;
+        },
+        getCartPrice(state) {
+            let total = 0;
+            state.cart.forEach((item) => {
+                total += item.price * item.quantity;
+            });
+            return total;
         },
     },
 });

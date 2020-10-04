@@ -33,7 +33,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Cart from "../components/Cart.vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -49,9 +49,9 @@ export default {
     ...mapGetters(["getMenu", "getCart"]),
   },
   methods: {
-    ...mapMutations(["ADD_TO_CART"]),
+    // ...mapMutations(["ADD_TO_CART"]),
     addToCart(item) {
-      this.ADD_TO_CART(item);
+      this.$store.dispatch("ADD_TO_CART_OR_QUANT", item);
       console.log(this.getCart);
     },
   },

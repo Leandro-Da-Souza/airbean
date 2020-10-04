@@ -12,20 +12,30 @@
       <div class="modal-overlay" v-if="this.showCart" @click="toggleCart">
         <div class="modal">
           <h3>Din beställning</h3>
-          <ul>
+          <ul v-if="getCartLength > 0">
             <li v-for="item in getCart" :key="item.id">
               <div class="left">
                 <h4>{{ item.title }}</h4>
                 <span>{{ item.price }} kr</span>
               </div>
               <div class="right">
-                <span>+</span>
+                <button @click.stop="ADD_QUANTITY(item)">+</button>
                 <p>{{ item.quantity }}</p>
-                <span>-</span>
+                <button @click.stop="REMOVE_QUANTITY(item)">-</button>
               </div>
             </li>
           </ul>
-          <div class="total"></div>
+          <div v-else>
+            <p>Inga beställningar än!</p>
+          </div>
+          <div class="total">
+            <div class="left2">
+              <h3>Total</h3>
+              <span>inkl moms + drönarleverans</span>
+            </div>
+            <div class="right2">{{ getCartPrice }} kr</div>
+          </div>
+          <button @click.stop="checkOut">Take My Money!</button>
         </div>
       </div>
     </transition>
@@ -33,7 +43,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Cart",
@@ -43,11 +53,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getCartLength", "getCart"]),
+    ...mapGetters(["getCartLength", "getCart", "getCartPrice"]),
   },
   methods: {
     toggleCart() {
       this.showCart = !this.showCart;
+    },
+    ...mapMutations(["ADD_QUANTITY", "REMOVE_QUANTITY", "CLEAR_CART"]),
+    checkOut() {
+      this.CLEAR_CART();
     },
   },
 };
@@ -63,6 +77,10 @@ export default {
   flex-direction: column;
   z-index: 99;
   color: var(--paragraph-color);
+}
+
+.modal button {
+  padding: 10px;
 }
 
 .open {
@@ -132,7 +150,7 @@ ul li {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 10px;
+  margin: 5px;
   align-items: center;
 }
 
@@ -140,6 +158,38 @@ ul li {
   text-align: left;
 }
 
+.right span {
+  font-size: 1rem;
+}
+.total {
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+button {
+  width: 40%;
+  align-self: center;
+  border-radius: 10%;
+  padding: 5px;
+  color: whitesmoke;
+  background-color: #333;
+  border: none;
+}
+
+.modal .right {
+  display: flex;
+  padding: 5px;
+  margin: 10px;
+}
+
+.modal .right button {
+  width: 20px;
+  padding: 5px;
+  margin: 0 5px 0 5px;
+}
 @keyframes openFromTop {
   from {
     height: 0%;
