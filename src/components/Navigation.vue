@@ -5,12 +5,12 @@
         <img src alt="" />
       </button>
       <div class="open" :class="toggle ? 'closeMenu' : 'openMenu'">
-        <h2 @click="handleRoute">Meny</h2>
-        <hr />
-        <h2 @click="handleRoute">Vårt Kaffe</h2>
-        <hr />
-        <h2 @click="handleRoute">Orderstatus</h2>
-        <hr />
+        <h2 @click="handleRoute" v-if="!toggle">Meny</h2>
+        <hr v-if="!toggle" />
+        <h2 @click="handleRoute" v-if="!toggle">Vårt Kaffe</h2>
+        <hr v-if="!toggle" />
+        <h2 @click="handleRoute" v-if="!toggle">Orderstatus</h2>
+        <hr v-if="!toggle" />
       </div>
     </nav>
   </div>

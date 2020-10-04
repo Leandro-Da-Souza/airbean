@@ -5,15 +5,23 @@
     <div class="menu">
       <h2>Meny</h2>
       <ul>
-        <li class="menuItem" v-for="menu in getMenu.menu" :key="menu.id">
+        <li
+          class="menuItem"
+          v-for="menuItem in getMenu.menu"
+          :key="menuItem.id"
+        >
           <div class="wrapper">
-            <img src="../assets/graphics/add.svg" alt="" />
+            <img
+              src="../assets/graphics/add.svg"
+              alt=""
+              @click="addToCart(menuItem)"
+            />
           </div>
           <div class="left">
-            <h3>{{ menu.title }}..........</h3>
-            <span>{{ menu.desc }}</span>
+            <h3>{{ menuItem.title }}..........</h3>
+            <span>{{ menuItem.desc }}</span>
           </div>
-          <h4>{{ menu.price }} kr</h4>
+          <h4>{{ menuItem.price }} kr</h4>
         </li>
       </ul>
     </div>
@@ -38,15 +46,19 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["getMenu"]),
+    ...mapGetters(["getMenu", "getCart"]),
   },
   methods: {
-    ...mapMutations(["SET_CART"]),
+    ...mapMutations(["ADD_TO_CART"]),
+    addToCart(item) {
+      this.ADD_TO_CART(item);
+      console.log(this.getCart);
+    },
   },
   created() {
     this.getMenu;
-    console.log(this.getMenu);
   },
+  updated() {},
 };
 </script>
 
@@ -60,6 +72,7 @@ export default {
   width: 35px;
   height: 35px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .menuItem {

@@ -9,8 +9,13 @@ export default createStore({
         SET_MENU: (state, data) => {
             state.menu = data;
         },
-        SET_CART: (state, data) => {
-            state.cart.push(data);
+        ADD_TO_CART: (state, data) => {
+            state.cart.push({
+                id: data.id,
+                price: data.price,
+                title: data.title,
+                quantity: 1,
+            });
         },
     },
     actions: {
@@ -25,6 +30,12 @@ export default createStore({
     getters: {
         getMenu(state) {
             return state.menu;
+        },
+        getCartLength(state) {
+            return state.cart.length;
+        },
+        getCart(state) {
+            return state.cart;
         },
     },
 });
