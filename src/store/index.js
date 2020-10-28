@@ -39,7 +39,7 @@ export default createStore({
     },
     actions: {
         async GET_MENU({ commit }) {
-            const response = await fetch('http://localhost:5050/api/beans/');
+            const response = await fetch('http://localhost:5000/api/beans/');
             const data = await response.json();
             commit('SET_MENU', data);
             return true;

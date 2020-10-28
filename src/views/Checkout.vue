@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async getData() {
-      const response = await fetch("http://localhost:5050/api/beans/", {
+      const response = await fetch("http://localhost:5000/api/beans/", {
         method: "POST",
       });
 
