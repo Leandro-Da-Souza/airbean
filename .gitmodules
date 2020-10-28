@@ -1,3 +1,6 @@
 [submodule "airbean-api"]
 	path = airbean-api
 	url = ./backend/airbean-api
+[submodule "backend/airbean-api"]
+	path = backend/airbean-api
+	url = https://github.com/Leandro-Da-Souza/airbean-api.git
