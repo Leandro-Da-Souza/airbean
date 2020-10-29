@@ -1,3 +1,5 @@
+# Fullstack Vue Project - School Assignment
+
 Run npm run concurr to run both api server and development server at the same time, and please use the toggle device toolbar (iphone 6/7/8) in chrome development tools as this project was created with mobile first in mind. 
 
 # airbean
